@@ -70,6 +70,6 @@ fn main() {
 
     let mut term1 = smart_house::Thermometer::create();
 
-    println!("Tempearature im my house is[{}]", term1.get_celsius());
+    println!("Temperature im my house is[{}]", term1.get_celsius());
     println!("Next call get_celsius[{}]", term1.get_celsius())
 }
