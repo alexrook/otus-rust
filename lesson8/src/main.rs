@@ -55,8 +55,8 @@ impl<'a> Room<'a> {
     fn create_report(&self) -> String {
         let mut str = self
             .devices
-            .iter()
-            .map(|(_k, device)| device.get_divice_info())
+            .values()
+            .map(|device| device.get_divice_info())
             .fold("Devices:".to_string(), |acc, info| acc + &info + ",");
 
         str.pop();
@@ -81,21 +81,18 @@ impl<'a> SmartHouse<'a> {
     }
 
     fn get_rooms_ids(&self) -> Vec<&String> {
-        self.rooms.keys().map(|k| k).collect()
+        self.rooms.keys().collect()
     }
 
     fn all_devices(&self) -> Vec<&String> {
-        let rooms: Vec<&Room<'a>> = self.rooms.iter().map(|(_, room)| room.to_owned()).collect();
+        let rooms: Vec<&Room<'a>> = self.rooms.values().map(|v| v.to_owned()).collect();
 
-        rooms
-            .iter()
-            .flat_map(|room| room.devices.iter().map(|(deviceId, _)| deviceId))
-            .collect()
+        rooms.iter().flat_map(|room| room.devices.keys()).collect()
     }
 
-    fn devices(&self, roomId: &str) -> Vec<&String> {
-        let r = match self.rooms.get(roomId) {
-            Some(&room) => room.devices.iter().map(|(deviceId, _)| deviceId).collect(),
+    fn devices(&self, room_id: &str) -> Vec<&String> {
+        let r = match self.rooms.get(room_id) {
+            Some(&room) => room.devices.keys().collect(),
             _ => Vec::new(),
         };
 
@@ -148,10 +145,9 @@ fn main() {
         .add_device("type-a-soket1".to_string(), &socket2)
         .add_device("smart-term2".to_string(), &term2);
 
-    // room2.show();
+    room2.show();
 
     //Smart House
-
     let mut smart_house = SmartHouse::new();
 
     smart_house.add_room("room1".to_string(), &room1);
@@ -159,5 +155,20 @@ fn main() {
 
     let report = smart_house.create_report();
 
+    println!("---------Smart house all devices ids-------------");
+    println!("device ids:{:?}", smart_house.all_devices());
+
+    println!("---------Smart house room1 devices ids-------------");
+    println!("device ids:{:?}", smart_house.devices("room1"));
+
+    println!("---------Smart house all devices ids-------------");
+    println!("device ids:{:?}", smart_house.all_devices());
+
+    println!("---------Smart house rooms ids-------------");
+    println!("rooms ids:{:?}", smart_house.get_rooms_ids());
+    println!("---------Smart house show devices-------------");
+    smart_house.show();
+
+    println!("---------Smart house report-------------");
     println!("A smart house report:\n{}", report);
 }

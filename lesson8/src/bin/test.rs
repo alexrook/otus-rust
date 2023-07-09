@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 #[derive(Debug)]
 struct Test {
     a: String,
@@ -12,14 +13,12 @@ fn main() {
         a: "CCC".to_string(),
         b: "DDD".to_string(),
     };
-    
-    let ret =create_vec(t1, t2);
 
+    let ret = create_vec(t1, t2);
 
-    println!("{:?}",ret)
+    println!("{:?}", ret)
 }
 
 fn create_vec(a: Test, b: Test) -> Vec<Test> {
-   vec![a, b]
-    
+    vec![a, b]
 }
