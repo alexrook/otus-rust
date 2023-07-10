@@ -29,24 +29,21 @@ mod smart_house {
         }
     }
 
-    pub struct Thermometer{
-        randomizer: rand::rngs::ThreadRng
+    pub struct Thermometer {
+        randomizer: rand::rngs::ThreadRng,
     }
 
     impl Thermometer {
-
         pub fn get_celsius(&mut self) -> i32 {
             self.randomizer.gen_range(-50..45)
         }
 
         pub fn create() -> Self {
-            Thermometer{
-                randomizer: thread_rng()
+            Thermometer {
+                randomizer: thread_rng(),
             }
         }
     }
-
-
 }
 
 fn main() {
@@ -60,7 +57,7 @@ fn main() {
     let state: bool = socket1.show_state();
     println!("socket1.desc[{:?}]", state);
 
-    //Я ожидал что здесь будет ошибка 
+    //Я ожидал что здесь будет ошибка
     //поскольку поле state уже borrow ?
     let state2: bool = socket1.show_state();
     println!("socket1.desc[{:?}]", state2);
