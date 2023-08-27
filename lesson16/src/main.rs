@@ -1,21 +1,17 @@
-
-mod room;
 mod device;
 mod house;
 mod io;
+mod room;
 
-use crate::room::*;
 use crate::device::*;
 use crate::house::*;
 use crate::io::*;
-
-
+use crate::room::*;
 
 fn main() {
     let file_content = include_str!("resources/rooms_and_devices.json");
 
     let devices: Vec<DeviceInfo> = serde_json::from_str(file_content).unwrap();
-
 
     let mut room1 = Room::new();
 
@@ -79,15 +75,13 @@ fn main() {
                     device_info.device_name,
                     Box::new(Thermometer::new(device_info.cons_arg)),
                 );
-                ()
-            },
-            "Poweroutlet"=>{
+            }
+            "Poweroutlet" => {
                 house.upsert_device(
                     device_info.room,
                     device_info.device_name,
                     Box::new(Poweroutlet::new(device_info.cons_arg)),
                 );
-                ()
             }
             other => println!("Unknown device type[{}]", other),
         }

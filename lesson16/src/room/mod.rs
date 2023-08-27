@@ -17,5 +17,4 @@ impl Room {
         self.devices.insert(name, device);
         self
     }
-    
 }

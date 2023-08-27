@@ -25,9 +25,9 @@ fn main() {
     }
 
     let md = MyData("aaa".to_string());
-    
+
     let r = bar(&md);
-    
+
     println!("{}", r);
 }
 
@@ -52,7 +52,7 @@ fn foo(name: &str) -> Result<File, MyError> {
             msg: format!("An open error occured[{}]", e),
         })?;
 
-    let _ = file.write_all(b"My useful bytes\n").map_err(|e| MyError {
+    file.write_all(b"My useful bytes\n").map_err(|e| MyError {
         msg: format!("A write error occured[{}], error kind[{}]", e, e.kind()),
     })?;
 
@@ -61,6 +61,6 @@ fn foo(name: &str) -> Result<File, MyError> {
 
 struct MyData(String);
 
-fn bar<'a>(md: &'a MyData) -> &'a str {
+fn bar(md: &MyData) -> &str {
     &md.0
 }

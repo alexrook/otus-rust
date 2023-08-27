@@ -42,9 +42,9 @@ impl House {
             for (device_name, device) in &room.devices {
                 let info = device.info();
                 ret.push_str(&format!("{}:{}", device_name, info));
-                ret.push_str("\n");
+                ret.push('\n');
             }
-            ret.push_str("\n");
+            ret.push('\n');
         }
         ret
     }
@@ -58,7 +58,7 @@ impl House {
             .rooms
             .get(&room_name)
             .ok_or(format!("The room[{room_name}] not found"))?;
-        let device: &Box<dyn Device> = room
+        let device = room
             .devices
             .get(&device_name)
             .ok_or(format!("The device[{device_name}] not found"))?;
