@@ -95,7 +95,7 @@ fn main() {
         .unwrap();
     println!("Ok:{dev_info1}");
 
-    let dev_info2 = house.get_device_info("No room".to_string(), "not exeistent 1".to_string());
+    let dev_info2 = house.get_device_info("no-existent-room".to_string(), "not exeistent 1".to_string());
 
     match dev_info2 {
         Err(e) => println!("Error:{e}"),

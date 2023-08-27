@@ -14,7 +14,7 @@ impl Poweroutlet {
 
 impl Device for Poweroutlet {
     fn info(&self) -> String {
-        format!("This is power outlet with type[{}]", self.outlet_type)
+        format!("This is a [{}] power outlet", self.outlet_type)
     }
 }
 
@@ -30,6 +30,6 @@ impl Thermometer {
 
 impl Device for Thermometer {
     fn info(&self) -> String {
-        format!("This is termometer with type[{}]", self.term_type)
+        format!("This is a [{}] type thermometer", self.term_type)
     }
 }
