@@ -1,0 +1,21 @@
+[
+    {
+      "room": "Living Room",
+      "device_name": "TV outlet2",
+      "device_type": "Poweroutlet",
+      "cons_arg": "Type A"
+    },
+    {
+      "room": "Bedroom",
+      "device_name": "Term Celsium1",
+      "device_type": "Thermometer",
+      "cons_arg": "Celsium"
+    },
+    {
+      "room": "Kitchen",
+      "device_name": "Term Kelvin1",
+      "device_type": "Thermometer",
+      "cons_arg": "Kelvin"
+    }
+  ]
+  
