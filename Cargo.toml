@@ -1,0 +1,11 @@
+[workspace]
+
+members = [
+    "lesson1",
+    "lesson4",
+    "lesson8",
+    "lesson9",
+    "lesson12",
+    "lesson16",
+    "lesson18",
+]
